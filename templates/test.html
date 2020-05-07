@@ -1,0 +1,36 @@
+{% extends "navbar.html" %}
+{% block content %}
+
+    <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="card card-body h-100  border-info" id="profile-wrapper">
+                            Student id : {{ student.0 }}<br>
+                            Student Mail : {{ student.2 }}
+                             {{ test_detail.1}}
+                            <hr>
+                            <p> You will have  : {{ test_detail.3 }} minutes</p>
+                            <p> Instructor : {{ test_detail.4 }}</p>
+                            <p> Exam Date :  {{ test_detail.2 }}</p>
+                            <a href="/{{ student.0 }}/tests/{{ test_detail.0 }}/1"> Start </a>
+
+                        </div>
+                    </div>
+
+
+                </div>
+        </div>
+
+    <style>
+
+    .container {
+
+        padding-top: 75px;
+        padding-left: 350px;
+        position: center;
+    }
+    </style>
+
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends "navbar.html" %}
+
+{% block content %}
+
+<div id="ten-countdown"></div>
+<style>
+
+    #ten-countdown {
+    /* text-align: center; */
+    border: 5px solid #004853;
+    display:inline;
+    padding: 5px;
+    color: #004853;
+    font-family: Verdana, sans-serif, Arial;
+    font-size: 40px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+</style>
+<script>
+    function countdown( elementName, minutes, seconds )
+{
+    var element, endTime, hours, mins, msLeft, time;
+
+    function twoDigits( n )
+    {
+        return (n <= 9 ? "0" + n : n);
+    }
+
+    function updateTimer()
+    {
+        msLeft = endTime - (+new Date);
+        if ( msLeft < 1000 ) {
+            element.innerHTML = "Time is up!";
+        } else {
+            time = new Date( msLeft );
+            hours = time.getUTCHours();
+            mins = time.getUTCMinutes();
+            textt = "Time Left"
+            element.innerHTML = (hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds());
+
+            setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+        }
+    }
+
+    element = document.getElementById( elementName );
+    endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+    updateTimer();
+}
+
+countdown( "ten-countdown",  {{ time }}, 0 );
+</script>
+
+
+
+    <div class="container">
+                <div class="row">
+
+                    <div class="col-md-1">
+
+                               {% for foo in range %}
+
+                                <form action="/{{ student_id }}/tests/{{ exam_id }}/{{ foo }}">
+                                <input class="sorular" type="submit" value="{{foo}}" />
+                            </form>
+
+                            {% endfor %}
+                        <br>
+                    </div>
+
+
+                    <div class="col-md-11">
+                        <div class="card card-body h-100  border-info" id="profile-wrapper">
+                             {{ question.1}}
+                            <hr>
+                            <iframe src="https://trinket.io/embed/python/0897f58ab9" width="100%"
+                                    height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+                            <form method="POST"> {% csrf_token %}
+
+                                <textarea name ="text_area" rows="10" cols="40"></textarea>
+                                <input type="submit" >
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+    </div>
+
+<style>
+
+
+    .sorular {
+
+        margin-left: 25px;
+        margin-top: 25px;
+    }
+
+        textarea{
+        background: url(http://i.imgur.com/2cOaJ.png);
+    background-attachment: local;
+    background-repeat: no-repeat;
+    padding-left: 35px;
+    padding-top: 10px;
+        border-color:#ccc;
+    }
+
+    .container{
+        padding-top: 50px;
+    }
+</style>
+
+{% endblock %}

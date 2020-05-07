@@ -1,0 +1,41 @@
+{% extends "navbar.html" %}
+{% load staticfiles %}
+{% load static %}
+
+{% block content %}
+
+        <div class="container">
+                <div class="row">
+                    {% for test_detail in test_details %}
+
+                    <div class="col-md-4">
+                        <div class="card card-body h-100  border-info" id="profile-wrapper">
+                             {{ test_detail.5 }} {{ test_detail.1}}
+                            <hr>
+                            <p> Duration : {{ test_detail.3 }} minutes</p>
+                            <p> Instructor : {{ test_detail.4 }}</p>
+                            <p> Date :  {{ test_detail.2 }}</p>
+                            <a href="{{ test_detail.0 }}"> Exam </a>
+
+                        </div>
+                    </div>
+
+                       {% endfor %}
+
+                </div>
+        </div>
+
+    <style>
+
+    .container{
+
+        padding-top: 75px;
+    }
+    </style>
+
+{% endblock %}
+
+
+
+
+
